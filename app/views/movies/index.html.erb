@@ -1,0 +1,8 @@
+<h1>🎥 All Movies</h1>
+<div>
+  <% @movies.each do |m| %>
+    <ul>
+      <li><%= m.title %> <img src="<%= m.poster_url %>" alt="<%= m.title %>" width="500"></li>
+    </ul>
+  <% end %>
+</div>
