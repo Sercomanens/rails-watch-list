@@ -1,0 +1,11 @@
+<div>
+<h1>Create your bookmark</h1>
+
+
+<%= simple_form_for(@bookmark) do |f| %>
+  <%= f.input :movie_id, collection: Movie.all, label_method: :title, value_method: :id, prompt: "Select a movie", input_html: { class: 'form-control' } %>
+  <%= f.input :list_id, collection: List.all, label_method: :name, value_method: :id, prompt: "Select a Category", input_html: { class: 'form-control' } %>
+  <%= f.input :comment %>
+  <%= f.submit %>
+<% end %>
+</div>
