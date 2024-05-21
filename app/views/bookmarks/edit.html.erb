@@ -1,0 +1,12 @@
+<h1>Edit Bookmark</h1>
+
+<%= form_with(model: @bookmark, local: true) do |form| %>
+  <div>
+    <%= form.label :comment %>
+    <%= form.text_field :comment %>
+  </div>
+
+  <div>
+    <%= form.submit "Update Bookmark" %>
+  </div>
+<% end %>

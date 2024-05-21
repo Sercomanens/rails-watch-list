@@ -1,0 +1,12 @@
+<h1>🎥 My Movie Categories</h1>
+
+<%= link_to 'Create a New Category', new_list_path %>
+
+<ul>
+  <% @lists.each do |list| %>
+    <li>
+      <%= link_to list.name, list_path(list) %>
+      <!-- Add other list attributes you want to display here -->
+    </li>
+  <% end %>
+</ul>

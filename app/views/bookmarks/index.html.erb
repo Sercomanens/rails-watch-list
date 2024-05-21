@@ -1,0 +1,12 @@
+<h1>🎥 My Movie Bookmarks</h1>
+
+<%= link_to 'Create a New Bookmark', new_list_path %>
+
+<ul>
+  <% @bookmarks.each do |b| %>
+    <li>
+       <%= link_to b.comment, bookmark_path(b) %>
+      <!-- Add other list attributes you want to display here -->
+    </li>
+  <% end %>
+</ul>
