@@ -1,12 +1,14 @@
 <h1>🎥 My Movie Bookmarks</h1>
 
-<%= link_to 'Create a New Bookmark', new_list_path %>
+<%= link_to 'Create a New Bookmark', new_bookmark_path %>
 
 <ul>
-  <% @bookmarks.each do |b| %>
+  <% @bookmarks.each do |bookmark| %> <!-- Make sure to use |bookmark| here -->
     <li>
-       <%= link_to b.comment, bookmark_path(b) %>
-      <!-- Add other list attributes you want to display here -->
+      <%= bookmark.movie.title %> - <%= bookmark.comment %> |
+     <%= link_to 'Delete', bookmark_path(bookmark), method: :delete, data: { confirm: "Are you sure?" } %>
     </li>
   <% end %>
 </ul>
+<%= link_to 'Back to All Lists', lists_path %>
+<%= link_to 'Back to All Movies', movies_path %>

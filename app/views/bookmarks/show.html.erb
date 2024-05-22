@@ -2,7 +2,7 @@
 
 <p><strong>Comment:</strong> <%= @bookmark.comment %></p>
 
-<p><strong>Movie:</strong> <%= @bookmark.movie.title %></p>
+<p><strong>Movie:</strong> <%= link_to @bookmark.movie.title, movie_path(@bookmark.movie) %></p>
 <p><strong>List:</strong> <%= link_to @bookmark.list.name, list_path(@bookmark.list) %></p>
 
 <%= link_to 'Edit Bookmark', edit_bookmark_path(@bookmark) %> |

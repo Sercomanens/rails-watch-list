@@ -17,13 +17,23 @@ class BookmarksController < ApplicationController
 
   def create
     @bookmark = Bookmark.new(bookmark_params)
-
-    if @bookmark.save
-      redirect_to bookmark_path(@bookmark)
-    else
-      render :new
+    respond_to do |format|
+      if @bookmark.save
+        format.turbo_stream
+        format.html { redirect_to bookmarks_path, notice: 'Bookmark was successfully created.' }
+      else
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(@bookmark, partial: 'bookmarks/form', locals: { bookmark: @bookmark }) }
+        format.html { render :new, status: :unprocessable_entity }
+      end
     end
   end
+
+    def destroy
+      @bookmark = Bookmark.find(params[:id])
+      @bookmark.destroy
+      redirect_to bookmarks_path, notice: 'Bookmark was successfully deleted.'
+    end
+
 
   private
 

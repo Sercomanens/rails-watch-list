@@ -1,0 +1,10 @@
+<h1>All Movies</h1>
+<ul>
+  <% @movies.each do |m| %>
+    <li>
+      <%= link_to m.title, movie_path(m) %>
+      <!-- Add other list attributes you want to display here -->
+    </li>
+  <% end %>
+</ul>
+<%= link_to 'Back to All Bookmarks', bookmarks_path %>
