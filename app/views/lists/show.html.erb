@@ -5,9 +5,9 @@
     <div>
       <strong>Movie in this list:</strong> <%= bookmark.movie.title %>
       <% if bookmark.movie.poster.attached? %>
-        <%= image_tag bookmark.movie.poster, width: "300px" %>
+        <%= cl_image_tag bookmark.movie.poster.key, width: 300, height: 400, crop: :fill %>
       <% elsif bookmark.movie.poster_url.present? %>
-        <%= image_tag bookmark.movie.poster_url, width: "300px" %>
+        <%= cl_image_tag bookmark.movie.poster_url, width: 300, height: 400, crop: :fill %>
       <% end %>
       <p><strong>Comment:</strong> <%= bookmark.comment %></p>
       <%= button_to 'Delete Bookmark', list_bookmark_path(@list, bookmark), method: :delete, data: { turbo_confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
