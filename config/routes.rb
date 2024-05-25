@@ -1,10 +1,13 @@
 Rails.application.routes.draw do
-  root to: "lists#index"
+  root to: 'lists#index'
 
   resources :lists, except: [:edit, :update] do
-    resources :bookmarks, only: [:new, :create]
-    get 'bookmarks/add_movie', to: 'bookmarks#add_movie', as: 'add_movie_to_bookmark'
-    post 'bookmarks/create_movie', to: 'bookmarks#create_movie', as: 'create_movie_to_bookmark'
+    resources :bookmarks, only: [:new, :create] do
+      collection do
+        get 'add_movie', to: 'bookmarks#add_movie'
+        post 'create_movie', to: 'bookmarks#create_movie'
+      end
+    end
   end
 
   resources :bookmarks, only: :destroy

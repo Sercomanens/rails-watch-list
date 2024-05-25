@@ -1,0 +1,19 @@
+<div class="container py-5">
+  <div class="row">
+    <div class="col-12 col-md-6 offset-lg-3">
+      <div class="bg-white rounded p-3 shadow">
+        <h3>Add a new movie to your <%= @list.name %> list</h3>
+        <%= simple_form_for @movie, url: create_movie_list_bookmarks_path(@list), html: { multipart: true } do |f| %>
+          <%= f.input :title, placeholder: "Movie Title" %>
+          <%# <%= f.input :overview, placeholder: "Movie Overview" %>
+          <%= f.input :poster, as: :file %>
+          <div class="form-group">
+            <%= label_tag :comment, "Comment" %>
+            <%= text_area_tag :comment, nil, placeholder: "Enter a comment about the movie", class: "form-control" %>
+          </div>
+          <%= f.submit "Add Movie", class: "btn btn-danger" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
