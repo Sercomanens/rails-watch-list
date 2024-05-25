@@ -1,14 +1,16 @@
 <h1><%= @list.name %> List</h1>
 
-<% if @list.movies.any? %>
-  <% @list.movies.each do |movie| %>
-    <% bookmark = movie.bookmarks.find_by(list_id: @list.id) %>
+<% if @list.bookmarks.any? %>
+  <% @list.bookmarks.each do |bookmark| %>
     <div>
-      <strong>Movie in this list:</strong> <%= movie.title %>
-      <% if movie.poster_url.present? %>
-        <%= image_tag(movie.poster_url, width: "300px") %>
+      <strong>Movie in this list:</strong> <%= bookmark.movie.title %>
+      <% if bookmark.movie.poster.attached? %>
+        <%= image_tag bookmark.movie.poster, width: "300px" %>
+      <% elsif bookmark.movie.poster_url.present? %>
+        <%= image_tag bookmark.movie.poster_url, width: "300px" %>
       <% end %>
-      <%= button_to 'Delete Bookmark', bookmark_path(bookmark), method: :delete, data: { turbo_confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+      <p><strong>Comment:</strong> <%= bookmark.comment %></p>
+      <%= button_to 'Delete Bookmark', list_bookmark_path(@list, bookmark), method: :delete, data: { turbo_confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
     </div>
   <% end %>
 <% else %>
